@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   final _qDivi = TextEditingController();
   final _pGarcom = TextEditingController();
   var _infoText = "Vamo racha a conta";
+  var _infoTudo = "Total???";
   var _formKey = GlobalKey<FormState>();
 
   @override
@@ -67,6 +68,7 @@ class _HomePageState extends State<HomePage> {
               _editText("% do Garçom", _pGarcom),
               _buttonCalcular(),
               _textInfo(),
+              _textInfo2(),
             ],
           ),
         ));
@@ -129,8 +131,12 @@ class _HomePageState extends State<HomePage> {
       double total = double.parse(_vTotal.text);
       double garcom = double.parse(_pGarcom.text);
       double pessoas = double.parse(_qDivi.text);
+      double servico = (total * garcom / 100);
+      double tudo = (total + (total * garcom / 100));
       double pagar = (total + (total * garcom / 100)) / pessoas;
-      _infoText = "$pagar pra cada";
+      _infoText = "$servico foi para o garçom";
+      _infoTudo = "Total da brincadeira + % do garçom: $tudo";
+      _infoPagar = "$pagar pra cada";
     });
   }
 
@@ -140,6 +146,16 @@ class _HomePageState extends State<HomePage> {
       _infoText,
       textAlign: TextAlign.center,
       style: TextStyle(color: Colors.blue, fontSize: 25.0),
+    );
+  }
+}
+
+  // // Widget text
+  _textInfo2() {
+    return Text(
+      _infoTudo,
+      textAlign: TextAlign.right,
+      style: TextStyle(color: Colors.black, fontSize: 25.0),
     );
   }
 }
