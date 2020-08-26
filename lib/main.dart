@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
       ),
       home: HomePage(),
     );
@@ -26,7 +26,6 @@ class _HomePageState extends State<HomePage> {
   final _vTotal = TextEditingController();
   final _qDivi = TextEditingController();
   final _pGarcom = TextEditingController();
-  final _dtotal = TextEditingController();
   var _infoText = "Vamo racha a conta";
   var _formKey = GlobalKey<FormState>();
 
@@ -130,9 +129,8 @@ class _HomePageState extends State<HomePage> {
       double total = double.parse(_vTotal.text);
       double garcom = double.parse(_pGarcom.text);
       double pessoas = double.parse(_qDivi.text);
-      double pagar = (total+(total*garcom/100))/pessoas;
+      double pagar = (total + (total * garcom / 100)) / pessoas;
       _infoText = "$pagar pra cada";
-      }
     });
   }
 
