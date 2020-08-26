@@ -23,16 +23,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // VARIAVEIS
-  final _tPeso = TextEditingController();
-  final _tAltura = TextEditingController();
-  var _infoText = "Informe seus dados!";
+  final _vTotal = TextEditingController();
+  final _qDivi = TextEditingController();
+  final _pGarcom = TextEditingController();
+  final _dtotal = TextEditingController();
+  var _infoText = "Vamo racha a conta";
   var _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculadora de IMC"),
+        title: Text("RACHA CONTA"),
         centerTitle: true,
         actions: <Widget>[
           IconButton(icon: Icon(Icons.refresh), onPressed: _resetFields)
@@ -44,10 +46,11 @@ class _HomePageState extends State<HomePage> {
 
   // PROCEDIMENTO PARA LIMPAR OS CAMPOS
   void _resetFields() {
-    _tPeso.text = "";
-    _tAltura.text = "";
+    _vTotal.text = "";
+    _qDivi.text = "";
+    _pGarcom.text = "";
     setState(() {
-      _infoText = "Informe seus dados!";
+      _infoText = "Quanto deu tudo?!";
       _formKey = GlobalKey<FormState>();
     });
   }
@@ -60,8 +63,9 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              _editText("Peso (kg)", _tPeso),
-              _editText("Altura (cm)", _tAltura),
+              _editText("Total da brincadeira", _vTotal),
+              _editText("Quantos amigos", _qDivi),
+              _editText("% do Garçom", _pGarcom),
               _buttonCalcular(),
               _textInfo(),
             ],
@@ -77,7 +81,7 @@ class _HomePageState extends State<HomePage> {
       keyboardType: TextInputType.number,
       style: TextStyle(
         fontSize: 22,
-        color: Colors.blue,
+        color: Colors.black,
       ),
       decoration: InputDecoration(
         labelText: field,
@@ -103,7 +107,7 @@ class _HomePageState extends State<HomePage> {
       margin: EdgeInsets.only(top: 10.0, bottom: 20),
       height: 45,
       child: RaisedButton(
-        color: Colors.blue,
+        color: Colors.orange,
         child: Text(
           "Calcular",
           style: TextStyle(
@@ -120,27 +124,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // PROCEDIMENTO PARA CALCULAR O IMC
+  // PROCEDIMENTO PARA CALCULAR O VALOR PARA CADA
   void _calculate() {
     setState(() {
-      double peso = double.parse(_tPeso.text);
-      double altura = double.parse(_tAltura.text) / 100;
-      double imc = peso / (altura * altura);
-      String imcStr = imc.toStringAsPrecision(4);
-      if (imc < 17) {
-        _infoText = "Muito abaixo do peso ($imcStr)";
-      } else if (imc < 18.5) {
-        _infoText = "Abaixo do Peso ($imcStr)";
-      } else if (imc < 25) {
-        _infoText = "Peso Normal ($imcStr)";
-      } else if (imc < 30) {
-        _infoText = "Acima do Peso ($imcStr)";
-      } else if (imc < 35) {
-        _infoText = "Obesidade Grau I ($imcStr)";
-      } else if (imc < 40) {
-        _infoText = "Obesidade Grau II ($imcStr)";
-      } else {
-        _infoText = "Obesidade Grau III ($imcStr)";
+      double total = double.parse(_vTotal.text);
+      double garcom = double.parse(_pGarcom.text);
+      double pessoas = double.parse(_qDivi.text);
+      double pagar = (total+(total*garcom/100))/pessoas;
+      _infoText = "$pagar pra cada";
       }
     });
   }
