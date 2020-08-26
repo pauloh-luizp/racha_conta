@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   final _vTotal = TextEditingController();
   final _qDivi = TextEditingController();
   final _pGarcom = TextEditingController();
-  var _infoText = "Vamo racha a conta";
+  var _infoService = "Vamo racha a conta";
   var _infoTudo = "Total???";
   var _formKey = GlobalKey<FormState>();
 
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
     _qDivi.text = "";
     _pGarcom.text = "";
     setState(() {
-      _infoText = "Quanto deu tudo?!";
+      _infoService = "Quanto deu tudo?!";
       _formKey = GlobalKey<FormState>();
     });
   }
@@ -69,6 +69,7 @@ class _HomePageState extends State<HomePage> {
               _buttonCalcular(),
               _textInfo(),
               _textInfo2(),
+              _textInfo3(),
             ],
           ),
         ));
@@ -134,18 +135,18 @@ class _HomePageState extends State<HomePage> {
       double servico = (total * garcom / 100);
       double tudo = (total + (total * garcom / 100));
       double pagar = (total + (total * garcom / 100)) / pessoas;
-      _infoText = "$servico foi para o garçom";
+      _infoService = "$servico foi para o garçom";
       _infoTudo = "Total da brincadeira + % do garçom: $tudo";
-      _infoPagar = "$pagar pra cada";
+      _infoPay = "$pagar pra cada";
     });
   }
 
   // // Widget text
   _textInfo() {
     return Text(
-      _infoText,
+      _infoService,
       textAlign: TextAlign.center,
-      style: TextStyle(color: Colors.blue, fontSize: 25.0),
+      style: TextStyle(color: Colors.black, fontSize: 25.0),
     );
   }
 }
@@ -154,8 +155,18 @@ class _HomePageState extends State<HomePage> {
   _textInfo2() {
     return Text(
       _infoTudo,
-      textAlign: TextAlign.right,
-      style: TextStyle(color: Colors.black, fontSize: 25.0),
+      textAlign: TextAlign.center,
+      style: TextStyle(color: Colors.red, fontSize: 25.0),
+    );
+  }
+}
+
+  // // Widget text
+  _textInfo3() {
+    return Text(
+      _infoPay,
+      textAlign: TextAlign.center,
+      style: TextStyle(color: Colors.green, fontSize: 25.0),
     );
   }
 }
