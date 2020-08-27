@@ -27,7 +27,6 @@ class _HomePageState extends State<HomePage> {
   final _qDivi = TextEditingController();
   final _pGarcom = TextEditingController();
   var _infoService = "Vamo racha a conta";
-  var _infoTudo = "Total???";
   var _formKey = GlobalKey<FormState>();
 
   @override
@@ -68,8 +67,6 @@ class _HomePageState extends State<HomePage> {
               _editText("% do Garçom", _pGarcom),
               _buttonCalcular(),
               _textInfo(),
-              //_textInfo2(),
-              //_textInfo3(),
             ],
           ),
         ));
@@ -135,8 +132,13 @@ class _HomePageState extends State<HomePage> {
       double servico = (total * garcom / 100);
       double tudo = (total + (total * garcom / 100));
       double pagar = (total + (total * garcom / 100)) / pessoas;
-      _infoService =
-          "R\$ $servico foi para o garçom \n\n Total da brincadeira + % do garçom: R\$ $tudo \n\n R\$ $pagar pra cada";
+      if (servico < 0 || tudo < 0) {
+        _infoService = "Tem trem errado aí";
+      }
+      if (servico > 0 && tudo > 0) {
+        _infoService =
+            "R\$ $servico foi para o garçom \n\n Total da brincadeira + % do garçom: R\$ $tudo \n\n R\$ $pagar pra cada";
+      }
     });
   }
 
