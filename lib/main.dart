@@ -68,8 +68,8 @@ class _HomePageState extends State<HomePage> {
               _editText("% do Garçom", _pGarcom),
               _buttonCalcular(),
               _textInfo(),
-              _textInfo2(),
-              _textInfo3(),
+              //_textInfo2(),
+              //_textInfo3(),
             ],
           ),
         ));
@@ -135,9 +135,8 @@ class _HomePageState extends State<HomePage> {
       double servico = (total * garcom / 100);
       double tudo = (total + (total * garcom / 100));
       double pagar = (total + (total * garcom / 100)) / pessoas;
-      _infoService = "$servico foi para o garçom";
-      _infoTudo = "Total da brincadeira + % do garçom: $tudo";
-      _infoPay = "$pagar pra cada";
+      _infoService =
+          "R\$ $servico foi para o garçom \n\n Total da brincadeira + % do garçom: R\$ $tudo \n\n R\$ $pagar pra cada";
     });
   }
 
@@ -147,26 +146,6 @@ class _HomePageState extends State<HomePage> {
       _infoService,
       textAlign: TextAlign.center,
       style: TextStyle(color: Colors.black, fontSize: 25.0),
-    );
-  }
-}
-
-  // // Widget text
-  _textInfo2() {
-    return Text(
-      _infoTudo,
-      textAlign: TextAlign.center,
-      style: TextStyle(color: Colors.red, fontSize: 25.0),
-    );
-  }
-}
-
-  // // Widget text
-  _textInfo3() {
-    return Text(
-      _infoPay,
-      textAlign: TextAlign.center,
-      style: TextStyle(color: Colors.green, fontSize: 25.0),
     );
   }
 }
